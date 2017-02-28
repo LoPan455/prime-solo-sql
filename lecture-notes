@@ -1,0 +1,40 @@
+SQL Intro Lecture Notes
+++++++++++++
+
+
+Creating a new table:
+======================
+CREATE TABLE "songs" (
+:"id" serial primary key,
+"rank" integer,
+"artist" varchar(80) not null,
+"track" varchar(120) not null,
+"published" date
+);
+
+
+Selecting records
+============
+
+/* Use * for wildcard SELECT all columns */
+SELECT * FROM "songs";
+
+/*Limit number of rows*/
+SELECT * FROM "songs" LIMIT 10;
+
+/* SELECT  matching on certain criteria with WHERE */
+SELECT * FROM "songs" WHERE "id" = 100;
+
+
+SELECT COUNT(*) FROM "songs" WHERE "track" ILIKE '%fire%';
+
+SELECT COUNT(*) FROM "songs" WHERE LOWER("track") LIKE '%fire%';
+
+/* SELECT all columns from songs where artist has 'a' in the name AND was published after 1/1/2000 OR track has fire in the name. */
+
+SELECT * FROM "songs"
+WHERE ("artist" LIKE '%a%' AND "published" > '1/1/2000')
+OR "track" ILIKE '%fire%';
+
+/* ORDER BY column ASC (or DESC) */
+SELECT * FROM "songs" ORDER BY "published" ASC;
